@@ -8,8 +8,7 @@
 
   // top: 10%;
   // left: auto;
-
-  height: 100%;
+  height: 90%;
   width: 100%;
 
   background-color: black;
@@ -80,7 +79,31 @@
   .player {
     margin-top: 10vh;
     width: 100%;
-    // height: 30%;
+    height: 90%;
+  }
+
+  .player-controls {
+    top: 6%;
+    left: 20px;
+    right: 20px;
+  }
+
+  .player-controls i {
+    font-size: 26px;
+  }
+
+  .player-title {
+    top: 70px;
+    font-size: 14px;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .player {
+    margin-top: 10vh;
+    width: 100%;
+    height: 90%;
   }
 
   .player-controls {
