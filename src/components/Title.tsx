@@ -256,7 +256,7 @@ export default function Title({ type, id }: TitleProps) {
               <div className="button2">
                 <a href={getDownloadUrl_2()} target="_blank" rel="noopener noreferrer">
                   <i className="fa-solid fa-download"></i>
-                  <span>{type === 'series' ? `S${season} E${episode}` : 'Download'}</span>
+                  <span>{type === 'series' ? `S${season} E${episode}` : 'Ankit'}</span>
                 </a>
               </div>
             </div>
