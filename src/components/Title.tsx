@@ -253,13 +253,12 @@ export default function Title({ type, id }: TitleProps) {
                   <i className="fa-solid fa-plus"></i>
                 </button>
               )}
-              <span>
-                <a className="button" href={getDownloadUrl_2()} target="_blank" rel="noopener noreferrer">
+              <div className="button2">
+                <a href={getDownloadUrl_2()} target="_blank" rel="noopener noreferrer">
                   <i className="fa-solid fa-download"></i>
                   <span>{type === 'series' ? `S${season} E${episode}` : 'Download'}</span>
                 </a>
-
-              </span>
+              </div>
             </div>
 
             <div className="title-grid">
