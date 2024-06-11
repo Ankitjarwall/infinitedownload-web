@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from '@/components/Nav';
 
 import Full from './pages/Full';
@@ -13,7 +13,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Nav />
-
+      <SpeedInsights />
       <Routes>
         <Route path="/" element={<Index />} />
 
