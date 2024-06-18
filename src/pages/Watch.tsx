@@ -44,9 +44,11 @@ export default function Watch() {
 
   function getSource() {
     let url = type === 'movie'
-      ? `${import.meta.env.VITE_VIDSRC_APP_API}/embed/movie/${id}`
-      : `${import.meta.env.VITE_VIDSRC_APP_API}/embed/tv/${id}/${season}-${episode}`;
-
+      ? `${import.meta.env.VITE_SUPER_API}${id}&tmdb=1`
+      : `${import.meta.env.VITE_SUPER_API}${id}&tmdb=1&s=${season}&e=${episode}`
+    // ? `${import.meta.env.VITE_VIDSRC_APP_API}/embed/movie/${id}`
+    // : `${import.meta.env.VITE_VIDSRC_APP_API}/embed/tv/${id}/${season}-${episode}`;
+    console.log(url)
     return url;
   }
 
@@ -159,13 +161,14 @@ export default function Watch() {
       <div className="player">
         <div className="player-controls">
           <i className="fa-regular fa-arrow-left" onClick={() => nav(`/${type}/${id}`)}></i>
+          
 
           {type === 'series' && episode < maxEpisodes && (
             <i className="fa-regular fa-forward-step right" onClick={() => nav(`/watch/${id}?s=${season}&e=${episode + 1}&me=${maxEpisodes}`)}></i>
           )}
 
         </div>
-          <iframe allowFullScreen referrerPolicy="origin" title={getTitle()} src={getSource()}></iframe>
+        <iframe scrolling='no' allowFullScreen referrerPolicy="origin" title={getTitle()} src={getSource()}></iframe>
       </div>
     </>
   );
