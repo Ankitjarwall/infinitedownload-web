@@ -74,14 +74,12 @@ export default function Collection({ title, items }: CollectionT) {
         </div>
 
         {index > 0 && (
-          <div className="collection-arrow" onClick={onBack}>
-            <i className="fa-solid fa-chevron-left"></i>
+          <div onClick={onBack}>
           </div>
         )}
 
         {index < indexMax && (
-          <div className="collection-arrow right" onClick={onNext}>
-            <i className="fa-solid fa-chevron-right"></i>
+          <div onClick={onNext}>
           </div>
         )}
       </div>
