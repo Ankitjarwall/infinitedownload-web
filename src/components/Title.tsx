@@ -199,12 +199,6 @@ export default function Title({ type, id }: TitleProps) {
     return <div className="title" ref={ref}></div>;
   }
 
-  // function getDownloadUrl_1() {
-  //   let url = type === 'movie'
-  //     ? `${import.meta.env.VITE_MOIVE_DOWNLOAD_1}/movie/${id}`
-  //     : `${import.meta.env.VITE_MOIVE_DOWNLOAD_1}/tv/${id}/${season}/${episode}`;
-  //   return url;
-  // }
 
   function getDownloadUrl_2() {
     let url = type === 'movie'
