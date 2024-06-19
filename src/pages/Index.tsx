@@ -24,7 +24,6 @@ export default function Index() {
       return;
     }
 
-    console.log(viewed);
 
     const parsed: MediaShort[] = JSON.parse(viewed);
 

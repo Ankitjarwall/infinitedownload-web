@@ -38,7 +38,6 @@ export default function Watch() {
       type === 'movie'
         ? `${import.meta.env.VITE_SUPER_API}${id}&tmdb=1`
         : `${import.meta.env.VITE_SUPER_API}${id}&tmdb=1&s=${season}&e=${episode}`;
-    console.log(url);
     return url;
   }
 
