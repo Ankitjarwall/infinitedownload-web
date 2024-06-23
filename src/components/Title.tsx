@@ -33,6 +33,13 @@ export default function Title({ type, id }: TitleProps) {
   const [wished, setWished] = useState(false);
   const [extendSuggestions, setExtendSuggestions] = useState(false);
   const [extendEpisodes, setExtendEpisodes] = useState(false);
+  const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
+
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const videoRef = useRef<HTMLIFrameElement>(null);
+
+  
 
   // Loading state updated code here
   const [loading, setLoading] = useState(true);
@@ -110,6 +117,18 @@ export default function Title({ type, id }: TitleProps) {
     getEpisodes(s);
   }
 
+  async function fetchTrailer() {
+    const endpoint = `${import.meta.env.VITE_AWS_API}/${type}/${id}`;
+    const req = await fetch(endpoint);
+    const res = await req.json();
+    const trailers = res.results.filter(
+      (trailer: any) => trailer.type.toLowerCase() === 'trailer' && trailer.name.toLowerCase().includes('official')
+    );
+    if (trailers.length > 0) {
+      setTrailerUrl(`https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&modestbranding=1&disablekb=1&loop=1`);
+    }
+  }
+
   function onPlusClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
 
@@ -158,7 +177,7 @@ export default function Title({ type, id }: TitleProps) {
 
     setData(undefined);
     setEpisodes(undefined);
-
+    fetchTrailer();
     setExtendEpisodes(false);
     setExtendSuggestions(false);
 
@@ -207,6 +226,43 @@ export default function Title({ type, id }: TitleProps) {
     return url;
   }
 
+  // Function to full screen the video
+  const toggleFullScreen = () => {
+    if (!isFullScreen) {
+      // Enter fullscreen mode logic
+      const iframe = document.querySelector('iframe');
+      if (iframe && iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      }
+    } else {
+      // Exit fullscreen mode logic
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+    setIsFullScreen(!isFullScreen);
+  };
+
+  const toggleMute = () => {
+    const iframe = videoRef.current;
+    if (!iframe) return;
+
+    const player = iframe.contentWindow;
+    if (player) {
+      player.postMessage(
+        JSON.stringify({
+          event: 'command',
+          func: 'mute',
+          mute: !isMuted
+        }),
+        '*'
+      );
+    }
+
+    setIsMuted(!isMuted);
+  };
+
+
   return (
     <>
       <Helmet>
@@ -220,17 +276,46 @@ export default function Title({ type, id }: TitleProps) {
           <div className="title-close" onClick={() => nav('/')}>
             <i className="fa-light fa-close"></i>
           </div>
-          <div
-            className="title-backdrop"
-            style={{
-              backgroundImage: `url(${data.images.backdrop})`
-            }}
-          ></div>
+          <div className="title-backdrop" style={{ position: 'relative' }}>
+            {trailerUrl ? ( // Conditionally render trailer if URL is available
+              <iframe
+                src={trailerUrl}
+                ref={videoRef} // Add ref to access the iframe element
+                frameBorder="0"
+                allow="autoplay; encrypted-media; fullscreen" // Add fullscreen permission
+                allowFullScreen // This is required for YouTube videos to support fullscreen
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  backgroundImage: `url(${data.images.backdrop})`,
+                  backgroundSize: 'cover'
+                }}
+              ></iframe>
+            ) : (
+              <div
+                className="title-backdrop"
+                style={{ backgroundImage: `url(${data.images.backdrop})` }}
+              ></div>
+            )}
+          </div>
+
 
           <div className="title-content">
             <div className="title-logo">
               <img alt={data.title} src={data.images.logo} />
             </div>
+
+            <div className="left-side-buttons">
+              <button className="button" onClick={toggleMute}>
+                <i className={`fa-solid ${isMuted ? 'fa-volume-mute' : 'fa-volume-up'}`}></i>
+              </button>
+              <button className="button" onClick={toggleFullScreen}>
+                <i className="fa-solid fa-expand"></i>
+              </button> 
+              </div>
 
             <div className="title-actions">
               <Link className="button" to={`/watch/${id}${type === 'series' ? `?s=${season}&e=${episode}` : ''}`}>
