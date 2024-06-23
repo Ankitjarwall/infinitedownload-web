@@ -39,7 +39,7 @@ export default function Title({ type, id }: TitleProps) {
   const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef<HTMLIFrameElement>(null);
 
-  
+
 
   // Loading state updated code here
   const [loading, setLoading] = useState(true);
@@ -121,13 +121,17 @@ export default function Title({ type, id }: TitleProps) {
     const endpoint = `${import.meta.env.VITE_AWS_API}/${type}/${id}`;
     const req = await fetch(endpoint);
     const res = await req.json();
+
     const trailers = res.results.filter(
       (trailer: any) => trailer.type.toLowerCase() === 'trailer' && trailer.name.toLowerCase().includes('official')
     );
+
     if (trailers.length > 0) {
-      setTrailerUrl(`https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&modestbranding=1&disablekb=1&loop=1`);
+      const youtubeUrl = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&loop=1`;
+      setTrailerUrl(youtubeUrl);
     }
   }
+
 
   function onPlusClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -230,7 +234,7 @@ export default function Title({ type, id }: TitleProps) {
   const toggleFullScreen = () => {
     if (!isFullScreen) {
       // Enter fullscreen mode logic
-      const iframe = document.querySelector('iframe');
+      const iframe = videoRef.current;
       if (iframe && iframe.requestFullscreen) {
         iframe.requestFullscreen();
       }
@@ -248,12 +252,12 @@ export default function Title({ type, id }: TitleProps) {
     if (!iframe) return;
 
     const player = iframe.contentWindow;
-    if (player) {
+    if (player && typeof player.postMessage === 'function') {
+      const command = isMuted ? 'unMute' : 'mute';
       player.postMessage(
         JSON.stringify({
           event: 'command',
-          func: 'mute',
-          mute: !isMuted
+          func: command
         }),
         '*'
       );
@@ -261,6 +265,8 @@ export default function Title({ type, id }: TitleProps) {
 
     setIsMuted(!isMuted);
   };
+
+
 
 
   return (
@@ -312,10 +318,11 @@ export default function Title({ type, id }: TitleProps) {
               <button className="button" onClick={toggleMute}>
                 <i className={`fa-solid ${isMuted ? 'fa-volume-mute' : 'fa-volume-up'}`}></i>
               </button>
+
               <button className="button" onClick={toggleFullScreen}>
                 <i className="fa-solid fa-expand"></i>
-              </button> 
-              </div>
+              </button>
+            </div>
 
             <div className="title-actions">
               <Link className="button" to={`/watch/${id}${type === 'series' ? `?s=${season}&e=${episode}` : ''}`}>
