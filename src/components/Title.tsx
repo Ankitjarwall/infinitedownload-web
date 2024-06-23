@@ -127,7 +127,7 @@ export default function Title({ type, id }: TitleProps) {
     );
 
     if (trailers.length > 0) {
-      const youtubeUrl = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&loop=1`;
+      const youtubeUrl = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&loop=1&enablejsapi=1`;
       setTrailerUrl(youtubeUrl);
     }
   }
@@ -257,7 +257,7 @@ export default function Title({ type, id }: TitleProps) {
       player.postMessage(
         JSON.stringify({
           event: 'command',
-          func: command
+          func: command,
         }),
         '*'
       );
@@ -319,7 +319,7 @@ export default function Title({ type, id }: TitleProps) {
                 <i className={`fa-solid ${isMuted ? 'fa-volume-mute' : 'fa-volume-up'}`}></i>
               </button>
 
-              <button className="button" onClick={toggleFullScreen}>
+              <button className="button " onClick={toggleFullScreen}>
                 <i className="fa-solid fa-expand"></i>
               </button>
             </div>

@@ -97,7 +97,7 @@
 .title-logo {
   display: flex;
   align-items: flex-end;
-
+  // margin-top: end;
   height: 150px;
   width: 100%;
   max-width: 50%;
@@ -453,6 +453,21 @@
     padding: 30px 40px;
   }
 
+  .title-logo {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 6vw;
+    height: 150px;
+    width: 100%;
+    max-width: 50%;
+  }
+
+  .title-logo img {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
   .title-actions .button {
     height: 40px;
     // width: 120px;
@@ -504,6 +519,29 @@
     align-items: center;
     border-radius: 5px;
   }
+
+  .left-side-buttons {
+    position: absolute;
+    top: end;
+    // left: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    z-index: 100;
+  }
+
+  .left-side-buttons .button {
+    margin-top: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -526,17 +564,17 @@
     border-radius: 5px;
   }
 
-  .title-container {
-    border-radius: 0;
-  }
-
-  .title-content {
-    margin-top: -150px;
-  }
-
   .title-logo {
-    height: auto;
-    max-width: 70%;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 55px;
+    height: 150px;
+    width: 100%;
+    max-width: 50%;
+  }
+
+  .title-logo img {
+    max-height: 50%;
   }
 
   .title-tagline {
@@ -594,7 +632,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
 
   .title-actions .button {
     height: 40px;
@@ -621,5 +659,40 @@
     flex-direction: row;
     align-items: center;
     border-radius: 5px;
+  }
+
+  .title-logo {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 90px;
+    height: 150px;
+    width: 100%;
+    max-width: 50%;
+  }
+
+  .title-logo img {
+    max-height: 45%;
+  }
+
+  .left-side-buttons {
+    position: absolute; 
+    margin-bottom: auto;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    z-index: 100;
+  }
+
+  .left-side-buttons .button {
+    height: 1px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff00;
+    color: #ffffff;
+    font-size: 18px;
   }
 }
