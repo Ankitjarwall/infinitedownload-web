@@ -84,6 +84,7 @@ export default function Nav() {
         <NavLink to="/movies">Movies</NavLink>
         <NavLink to="/series">Series</NavLink>
         <NavLink to="/list">My List</NavLink>
+        <a href="https://t.me/+kxUS1__4bCA0ODFl" target="_blank" rel="noopener noreferrer">Join Telegram</a>
 
         <NavLink className="mobile" to="/movies">
           <i className="fa-regular fa-film"></i>
@@ -96,6 +97,9 @@ export default function Nav() {
         <NavLink className="mobile" to="/list">
           <i className="fa-regular fa-list"></i>
         </NavLink>
+
+        <a href="https://t.me/+kxUS1__4bCA0ODFl" className='mobile' target="_blank" rel="noopener noreferrer"><i className="fa-regular fa-comments"></i>
+        </a>
       </div>
 
       <div className="top-bar-search" ref={wrapperRef}>

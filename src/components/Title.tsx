@@ -125,7 +125,7 @@ export default function Title({ type, id }: TitleProps) {
     const trailers = res.results.filter(
       (trailer: any) => trailer.type.toLowerCase() === 'trailer' || trailer.name.toLowerCase().includes('Trailer','official')
     );
-
+    
     if (trailers.length > 0) {
       const youtubeUrl = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&loop=1&enablejsapi=1`;
       setTrailerUrl(youtubeUrl);
