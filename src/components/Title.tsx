@@ -123,7 +123,7 @@ export default function Title({ type, id }: TitleProps) {
     const res = await req.json();
 
     const trailers = res.results.filter(
-      (trailer: any) => trailer.type.toLowerCase() === 'trailer' && trailer.name.toLowerCase().includes('official')
+      (trailer: any) => trailer.type.toLowerCase() === 'trailer' || trailer.name.toLowerCase().includes('Trailer','official')
     );
 
     if (trailers.length > 0) {
@@ -131,6 +131,7 @@ export default function Title({ type, id }: TitleProps) {
       setTrailerUrl(youtubeUrl);
     }
   }
+
 
 
   function onPlusClick(e: React.MouseEvent<HTMLButtonElement>) {

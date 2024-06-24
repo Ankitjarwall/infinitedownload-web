@@ -45,6 +45,7 @@
 
   max-width: 100%;
   max-height: 250px;
+  margin-top: 20vh;
 }
 
 .hero-text {
@@ -74,6 +75,11 @@
   .hero-content {
     margin: auto 40px;
   }
+
+  .hero-logo {
+    max-height: 150px;
+    margin-top: 25vh;
+  }
 }
 
 @media (max-width: 700px) {
@@ -84,6 +90,7 @@
 
   .hero-logo {
     max-height: 150px;
+    margin-top: 25vh;
   }
 
   .hero-text {
@@ -95,5 +102,15 @@
 @media (max-width: 550px) {
   .hero-text {
     font-size: 15px;
+  }
+
+  .hero-logo {
+    margin-top: 20vh;
+  }
+
+  .hero {
+    height: 90vh;
+    height: 80lvh;
+    width: 100%;
   }
 }
