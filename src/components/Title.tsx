@@ -356,7 +356,7 @@ export default function Title({ type, id }: TitleProps) {
                 <i className={`fa-solid ${isMuted ? 'fa-volume-mute' : 'fa-volume-up'}`}></i>
               </button>
 
-              <button className="button " onClick={toggleFullScreen}>
+              <button className="button btn" onClick={toggleFullScreen}>
                 <i className="fa-solid fa-expand"></i>
               </button>
             </div>
