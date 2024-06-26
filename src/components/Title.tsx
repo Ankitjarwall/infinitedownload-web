@@ -115,6 +115,7 @@ export default function Title({ type, id }: TitleProps) {
     setSeason(s);
     getEpisodes(s);
   }
+  
 
   async function fetchTrailer() {
     const endpoint = `${import.meta.env.VITE_AWS_API}/${type}/${id}`;
@@ -126,10 +127,14 @@ export default function Title({ type, id }: TitleProps) {
     );
 
     if (trailers.length > 0) {
-      const youtubeUrl = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&loop=1&mute=${MutePreference.isMuted()}&playlist=${trailers[0].key}&enablejsapi=1`;
+      const trailerKey = trailers[0].key;
+      const youtubeUrl = `https://www.youtube-nocookie.com/embed/${trailerKey}?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1&loop=1&mute=${MutePreference.isMuted()}&playlist=${trailerKey}&enablejsapi=1`;
+
       setTrailerUrl(youtubeUrl);
-    }
+
+    }  
   }
+  
 
   function onPlusClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();

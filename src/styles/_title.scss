@@ -18,7 +18,7 @@
   margin: 0 auto;
   background-color: $background-color;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgb(0, 0, 0);
   animation: fade_in 300ms linear forwards;
   overflow: hidden;
 }
@@ -28,12 +28,11 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 60px;
+  // right:-400px;
+  width: 100%;
   height: 60px;
-  background-color: $background-color;
-  border-radius: 50%;
+  background-color:#000000;
+  // border-radius: 50%;
   font-size: 25px;
   z-index: 1;
   cursor: pointer;
@@ -379,8 +378,8 @@
 
 @media (max-width: 1000px) {
   .title-close {
-    width: 45px;
-    height: 45px;
+    width: 100;
+    height: 59px;
   }
 
   .title {
@@ -453,8 +452,8 @@
 
 @media (max-width: 450px) {
   .title-close {
-    width: 40px;
-    height: 40px;
+    width: 100%;
+    height: 50px;
   }
 
   .title {
