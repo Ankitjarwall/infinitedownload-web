@@ -66,6 +66,7 @@
 }
 
 .title-logo {
+  margin-top: 70px;
   display: flex;
   align-items: flex-end;
   height: 150px;
@@ -87,7 +88,6 @@
 }
 
 .title-logo img {
-
   display: block;
   max-height: 100%;
   max-width: 100%;
@@ -345,6 +345,7 @@
 }
 
 .left-side-buttons {
+  margin-top: 10px;
   position: absolute;
   top: end;
   right: 50px;
