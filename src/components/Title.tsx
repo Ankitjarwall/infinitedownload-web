@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import Wishlist from '@/utils/Wishlist';
+import MutePreference from '@/utils/MutePreference';
 
 import EpisodeT from '@/types/Episode';
 import MediaType from '@/types/MediaType';
@@ -36,10 +37,8 @@ export default function Title({ type, id }: TitleProps) {
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
 
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(MutePreference.isMuted()); // Get the initial state from MutePreference
   const videoRef = useRef<HTMLIFrameElement>(null);
-
-
 
   // Loading state updated code here
   const [loading, setLoading] = useState(true);
@@ -123,16 +122,14 @@ export default function Title({ type, id }: TitleProps) {
     const res = await req.json();
 
     const trailers = res.results.filter(
-      (trailer: any) => trailer.type.toLowerCase() === 'trailer' || trailer.name.toLowerCase().includes('Trailer','official')
+      (trailer: any) => trailer.type.toLowerCase() === 'trailer' || trailer.name.toLowerCase().includes('Trailer', 'official')
     );
-    
+
     if (trailers.length > 0) {
-      const youtubeUrl = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&loop=1&playlist=${trailers[0].key}&enablejsapi=1`;
+      const youtubeUrl = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&controls=0&title=0&loop=1&mute=${MutePreference.isMuted()}&playlist=${trailers[0].key}&enablejsapi=1`;
       setTrailerUrl(youtubeUrl);
     }
   }
-
-
 
   function onPlusClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -214,6 +211,38 @@ export default function Title({ type, id }: TitleProps) {
     };
   }, [data]);
 
+  useEffect(() => {
+    const iframe = videoRef.current;
+    if (iframe) {
+      const player = iframe.contentWindow;
+      if (player && typeof player.postMessage === 'function') {
+        const command = isMuted ? 'mute' : 'unMute';
+        player.postMessage(
+          JSON.stringify({
+            event: 'command',
+            func: command,
+          }),
+          '*'
+        );
+      }
+    }
+  }, [isMuted]);
+
+
+  // Listen for changes to the mute preference
+  useEffect(() => {
+
+    const handleMuteChange = () => {
+      setIsMuted(MutePreference.isMuted());
+    };
+
+    MutePreference.onMuteChange(handleMuteChange);
+
+    return () => {
+      MutePreference.offMuteChange(handleMuteChange);
+    };
+  }, []);
+
   // Loading state updated code here
   if (loading) {
     return <Loading />;
@@ -222,7 +251,6 @@ export default function Title({ type, id }: TitleProps) {
   if (!data) {
     return <div className="title" ref={ref}></div>;
   }
-
 
   function getDownloadUrl_2() {
     let url = type === 'movie'
@@ -248,26 +276,29 @@ export default function Title({ type, id }: TitleProps) {
     setIsFullScreen(!isFullScreen);
   };
 
+  // Function to toggle mute state
   const toggleMute = () => {
-    const iframe = videoRef.current;
-    if (!iframe) return;
+    const newMuteState = !isMuted;
+    setIsMuted(newMuteState); // Update local state
 
-    const player = iframe.contentWindow;
-    if (player && typeof player.postMessage === 'function') {
-      const command = isMuted ? 'unMute' : 'mute';
-      player.postMessage(
-        JSON.stringify({
-          event: 'command',
-          func: command,
-        }),
-        '*'
-      );
+    // Update YouTube video mute state
+    const iframe = videoRef.current;
+    if (iframe) {
+      const player = iframe.contentWindow;
+      if (player && typeof player.postMessage === 'function') {
+        const command = newMuteState ? 'mute' : 'unMute';
+        player.postMessage(
+          JSON.stringify({
+            event: 'command',
+            func: command,
+          }),
+          '*'
+        );
+      }
     }
 
-    setIsMuted(!isMuted);
+    MutePreference.setMute(newMuteState); // Save the new mute state to storage
   };
-
-
 
 
   return (
@@ -397,7 +428,7 @@ export default function Title({ type, id }: TitleProps) {
                     episodes.map((episode, i) => {
                       if (!extendEpisodes && i > 9) return null;
 
-                      return <Episode key={i} {...episode} id={data.id} season={season} maxEpisodes={maxEpisodes}/>;
+                      return <Episode key={i} {...episode} id={data.id} season={season} maxEpisodes={maxEpisodes} />;
                     })}
                 </div>
 
