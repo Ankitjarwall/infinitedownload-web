@@ -377,6 +377,10 @@
 }
 
 @media (max-width: 1000px) {
+  .title-close {
+    width: 45px;
+    height: 45px;
+  }
 
   .title {
     padding: 0px 0px;
@@ -447,6 +451,11 @@
 }
 
 @media (max-width: 450px) {
+  .title-close {
+    width: 40px;
+    height: 40px;
+  }
+
   .title {
     padding: 0px 0px;
   }
