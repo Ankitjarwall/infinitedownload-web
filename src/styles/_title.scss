@@ -1,111 +1,94 @@
 .title {
   position: fixed;
-  // position: relative;
   top: 0;
   left: 0;
-
-
   height: 100%;
   width: 100%;
-
   padding: 30px 60px;
-
   background-color: rgba(0, 0, 0, 0.5);
-
   overflow: auto;
-
   z-index: $title-index;
 }
 
 .title-container {
   position: relative;
-
   min-height: 100%;
   width: 100%;
   max-width: 900px;
-
   margin: 0 auto;
-
   background-color: $background-color;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
   animation: fade_in 300ms linear forwards;
-
   overflow: hidden;
 }
-
-
 
 .title-close {
   display: flex;
   align-items: center;
   justify-content: center;
-
   position: absolute;
-
   top: 15px;
   right: 15px;
-
   width: 60px;
   height: 60px;
-
   background-color: $background-color;
   border-radius: 50%;
-
   font-size: 25px;
-
   z-index: 1;
-
   cursor: pointer;
 }
 
 .title-backdrop {
   position: relative;
-
   width: 100%;
-
   aspect-ratio: 16/9;
-
   background-color: black;
   background-position: center;
   background-size: cover;
+}
 
-  &::after {
-    content: '';
-
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    height: 50%;
-    width: 100%;
-
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, $background-color 100%);
-  }
+.title-backdrop::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, $background-color 100%);
 }
 
 .title-content {
   position: relative;
-
   margin-top: -250px;
   padding: 0 40px 40px;
-
   z-index: 1;
 }
 
 .title-logo {
   display: flex;
   align-items: flex-end;
-  // margin-top: 300px;
   height: 150px;
   width: 100%;
   max-width: 50%;
+  animation: scaleDown 1s ease forwards 5s;
+  transform-origin: left;
+}
+
+@keyframes scaleDown {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.6);
+    /* Scale down to 60% */
+  }
 }
 
 .title-logo img {
-  display: block;
 
+  display: block;
   max-height: 100%;
   max-width: 100%;
 }
@@ -115,31 +98,26 @@
   flex-direction: row;
   align-items: center;
   column-gap: 15px;
-
   margin-top: 20px;
 }
 
 .title-actions .button {
   height: 44px;
   font-size: 16px;
+}
 
-  &:not(:first-child) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.title-actions .button:not(:first-child) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 44px;
+  padding: 0;
+  border-radius: 50%;
+}
 
-    height: 44px;
-    width: 44px;
-
-    padding: 0;
-
-    border-radius: 50%;
-  }
-
-  i {
-    font-size: 18px;
-  }
-
+.title-actions .button i {
+  font-size: 18px;
 }
 
 .title-actions .button2 {
@@ -149,9 +127,6 @@
   color: #000000;
   font-weight: 600;
   padding-left: 20px;
-  padding-left: 20px;
-  // padding-right: 15px;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -165,18 +140,16 @@
 .title-grid {
   display: grid;
   grid-template-columns: 70% 30%;
-
   margin-top: 50px;
 }
 
 .title-col {
   width: 100%;
+  // padding-right: 20px;
+}
 
-  padding-right: 20px;
-
-  &:last-child {
-    padding-right: 0;
-  }
+.title-col:last-child {
+  padding-right: 0;
 }
 
 .title-tagline {
@@ -189,20 +162,15 @@
   flex-direction: row;
   align-items: center;
   column-gap: 10px;
-
   margin-top: 5px;
-
   color: $text-two;
-
   font-size: 15px;
   font-weight: 500;
 }
 
 .title-description {
   margin-top: 20px;
-
   line-height: 1.4;
-
   font-size: 14px;
   font-weight: 400;
 }
@@ -210,25 +178,22 @@
 .title-list {
   display: flex;
   flex-wrap: wrap;
-
   line-height: 1.5;
-
   font-size: 14px;
   font-weight: 500;
+}
 
-  .head {
-    margin-right: 5px;
+.title-list .head {
+  margin-right: 5px;
+  color: $text-three;
+}
 
-    color: $text-three;
-  }
+.title-list a {
+  margin-right: 5px;
+}
 
-  a {
-    margin-right: 5px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
+.title-list a:last-child {
+  margin-right: 0;
 }
 
 .title-section {
@@ -244,7 +209,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px 15px;
-
   margin-top: 20px;
 }
 
@@ -253,60 +217,44 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
   position: relative;
-
   height: 1px;
-
   margin-top: 20px;
+}
 
-  &.active {
-    margin-top: 30px;
-    z-index: -1;
-  }
+.title-extend.active {
+  margin-top: 30px;
+  z-index: -1;
 }
 
 .title-extend::before {
   content: '';
-
   position: absolute;
   left: -40px;
   bottom: -20px;
-
   height: 100px;
   width: calc(100% + 80px);
-
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, $background-color 70%);
-
   z-index: 0;
 }
 
 .title-extend::after {
   content: '';
-
   position: absolute;
-
   left: 0;
   bottom: 0;
-
   width: 100%;
   height: 1px;
-
   background-color: rgba(#fff, 0.2);
 }
 
 .title-extend .button {
   position: relative;
-
   height: 44px;
   width: 44px;
-
   padding: 0;
-
   border-radius: 50%;
-
   font-size: 18px;
-
   z-index: 1;
 }
 
@@ -319,34 +267,28 @@
 .title-select {
   display: flex;
   align-items: center;
-
   min-width: 180px;
   margin-left: auto;
   padding: 12px 20px;
-
   color: white;
   background-color: #242424;
   border: 2px solid rgb(77, 77, 77);
   border-radius: 5px;
   outline: none;
-
   appearance: none;
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='white'><polygon points='0,0 10,0 5,5'/></svg>");
   background-repeat: no-repeat;
   background-position-x: calc(100% - 10px);
   background-position-y: calc(50% + 4px);
   background-size: 14px;
-
   font-size: 16px;
   font-weight: 700;
-
   cursor: pointer;
 }
 
 .title-episodes {
   display: flex;
   flex-direction: column;
-
   margin-top: 20px;
 }
 
@@ -354,37 +296,28 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
   padding: 20px;
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
   cursor: pointer;
 }
 
 .episode-number {
   color: $text-two;
-
   min-width: 70px;
-
   font-size: 24px;
   font-weight: 500;
-
   text-align: center;
 }
 
 .episode-image {
   width: 100%;
   max-width: 130px;
-
   aspect-ratio: 16/9;
-
   border-radius: 5px;
 }
 
 .episode-text {
   width: 100%;
-
   margin-left: 20px;
 }
 
@@ -401,19 +334,15 @@
 
 .episode-runtime {
   margin-left: auto;
-
   font-size: 15px;
   font-weight: 500;
 }
 
 .episode-description {
   margin-top: 10px;
-
   color: $text-two;
-
   font-size: 14px;
 }
-
 
 .left-side-buttons {
   position: absolute;
@@ -437,7 +366,6 @@
   font-size: 18px;
 }
 
-
 @keyframes fade_in {
   0% {
     opacity: 0;
@@ -449,250 +377,140 @@
 }
 
 @media (max-width: 1000px) {
+
   .title {
-    padding: 30px 40px;
-  }
-
-  .title-logo {
-    display: flex;
-    align-items: flex-end;
-    margin-top: 6vw;
-    height: 150px;
-    width: 100%;
-    max-width: 50%;
-  }
-
-  .title-logo img {
-    display: block;
-    max-height: 100%;
-    max-width: 100%;
-  }
-
-  .title-actions .button {
-    height: 40px;
-    // width: 120px;
-
-    font-size: 16px;
-
-    &:not(:first-child) {
-      height: 40px;
-      width: 45px;
-    }
-  }
-
-  .title-actions .button2 {
-    width: 140px;
-    height: 40px;
-    background-color: #ffffff;
-    color: #000000;
-    font-weight: 600;
-    padding-left: 10px;
-    // padding-right: 15px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 5px;
-  }
-}
-
-@media (max-width: 700px) {
-  .title {
-    padding: 30px;
-  }
-
-  .title-cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .title-actions .button2 {
-    width: 140px;
-    height: 40px;
-    background-color: #ffffff;
-    color: #000000;
-    font-weight: 600;
-    padding-left: 10px;
-    // padding-right: 15px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 5px;
-  }
-
-  .left-side-buttons {
-    position: absolute;
-    top: end;
-    // left: 10px;
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-    z-index: 100;
-  }
-
-  .left-side-buttons .button {
-    margin-top: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 600px) {
-  .title {
-    padding: 0;
-  }
-
-  .title-actions .button2 {
-    width: 140px;
-    height: 40px;
-    background-color: #ffffff;
-    color: #000000;
-    font-weight: 600;
-    padding-left: 10px;
-    // padding-right: 15px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 5px;
-  }
-
-  .title-logo {
-    display: flex;
-    align-items: flex-end;
-    margin-top: 55px;
-    height: 150px;
-    width: 100%;
-    max-width: 50%;
-  }
-
-  .title-logo img {
-    max-height: 50%;
-  }
-
-  .title-tagline {
-    font-size: 16px;
+    padding: 0px 0px;
   }
 
   .title-section {
     margin-top: 30px;
   }
 
+  .title-logo {
+    margin-top: 60px;
+  }
+
   .title-grid {
+    display: grid;
     grid-template-columns: 100%;
-    row-gap: 20px;
+    margin-top: 50px;
   }
 
-  .title-col {
-    width: 100%;
-
-    padding-right: 0;
-  }
-
-  .title-cards {
-    grid-template-columns: repeat(2, 1fr);
+  .title-content {
+    padding: 0 20px 20px;
   }
 
   .episode {
-    flex-direction: column;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .episode-title {
+    font-size: 13px;
   }
 
   .episode-number {
-    display: none;
+    padding-right: 10px;
+    min-width: 10px;
+    font-size: 15px;
+    text-align: start;
   }
 
-  .episode-image {
-    width: 100%;
-    min-width: 200px;
-    max-width: 60%;
-
-    aspect-ratio: 16/9;
-
-    border-radius: 5px;
+  .episode-runtime {
+    font-size: 13px;
   }
 
   .episode-text {
     width: 100%;
-    margin-left: 0;
-    margin-top: 20px;
+    margin-left: 10px;
+  }
+
+  .episode-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .left-side-buttons {
-    flex-direction: column;
-    align-items: flex-end;
-    top: 70px;
+    top: 100px;
     right: 20px;
+  }
+
+  .left-side-buttons .button {
+    height: 40px;
+    width: 40px;
   }
 }
 
 @media (max-width: 450px) {
-
-  .title-actions .button {
-    height: 40px;
-    width: 115px;
-
-    font-size: 16px;
-
-    &:not(:first-child) {
-      height: 40px;
-      width: 45px;
-    }
+  .title {
+    padding: 0px 0px;
   }
 
-  .title-actions .button2 {
-    width: 140px;
-    height: 40px;
-    background-color: #ffffff;
-    color: #000000;
-    font-weight: 600;
-    padding-left: 10px;
-    // padding-right: 15px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 5px;
+  .title-section {
+    margin-top: 30px;
   }
 
   .title-logo {
-    display: flex;
-    align-items: flex-end;
-    margin-top: 90px;
-    height: 150px;
-    width: 100%;
-    max-width: 50%;
+    margin-top: 80px;
   }
 
-  .title-logo img {
-    max-height: 45%;
+  .title-grid {
+    display: grid;
+    grid-template-columns: 100%;
+    margin-top: 50px;
+  }
+
+  .title-content {
+    padding: 0 20px 20px;
+  }
+
+  .episode {
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .episode-title {
+    font-size: 13px;
+  }
+
+  .episode-number {
+    padding-right: 10px;
+    min-width: 10px;
+    font-size: 15px;
+    text-align: start;
+  }
+
+  .episode-runtime {
+    font-size: 13px;
+  }
+
+  .episode-text {
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .episode-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .left-side-buttons {
-    position: absolute; 
-    margin-bottom: auto;
-    right: 10px;
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-    z-index: 100;
+    top: 100px;
+    right: 20px;
   }
 
   .left-side-buttons .button {
-    height: 1px;
+    height: 40px;
     width: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff00;
-    color: #ffffff;
-    font-size: 18px;
   }
 }

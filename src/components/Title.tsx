@@ -397,7 +397,7 @@ export default function Title({ type, id }: TitleProps) {
                     episodes.map((episode, i) => {
                       if (!extendEpisodes && i > 9) return null;
 
-                      return <Episode key={i} {...episode} id={data.id} season={season} maxEpisodes={maxEpisodes} />;
+                      return <Episode key={i} {...episode} id={data.id} season={season} maxEpisodes={maxEpisodes}/>;
                     })}
                 </div>
 
