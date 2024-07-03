@@ -115,7 +115,7 @@ export default function Title({ type, id }: TitleProps) {
     setSeason(s);
     getEpisodes(s);
   }
-
+  
 
   async function fetchTrailer() {
     const endpoint = `${import.meta.env.VITE_AWS_API}/${type}/${id}`;
@@ -132,9 +132,9 @@ export default function Title({ type, id }: TitleProps) {
 
       setTrailerUrl(youtubeUrl);
 
-    }
+    }  
   }
-
+  
 
   function onPlusClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -256,13 +256,13 @@ export default function Title({ type, id }: TitleProps) {
   if (!data) {
     return <div className="title" ref={ref}></div>;
   }
-  // download link
-  // function getDownloadUrl_2() {
-  //   let url = type === 'movie'
-  //     ? `${import.meta.env.VITE_MOIVE_DOWNLOAD_2}/movie/${id}`
-  //     : `${import.meta.env.VITE_MOIVE_DOWNLOAD_2}/tv/${id}/${season}/${episode}`;
-  //   return url;
-  // }
+
+  function getDownloadUrl_2() {
+    let url = type === 'movie'
+      ? `${import.meta.env.VITE_MOIVE_DOWNLOAD_2}/movie/${id}`
+      : `${import.meta.env.VITE_MOIVE_DOWNLOAD_2}/tv/${id}/${season}/${episode}`;
+    return url;
+  }
 
   // Function to full screen the video
   const toggleFullScreen = () => {
@@ -362,15 +362,10 @@ export default function Title({ type, id }: TitleProps) {
             </div>
 
             <div className="title-actions">
-              <Link className="button" to={`https://www.netflix.com/in/login`}>
+              <Link className="button" to={`/watch/${id}${type === 'series' ? `?s=${season}&e=${episode}` : ''}`}>
                 <i className="fa-solid fa-play"></i>
                 <span>{type === 'series' ? `S${season} E${episode}` : 'Play'}</span>
               </Link>
-              
-              {/* <Link className="button" to={`/watch/${id}${type === 'series' ? `?s=${season}&e=${episode}` : ''}`}>
-                <i className="fa-solid fa-play"></i>
-                <span>{type === 'series' ? `S${season} E${episode}` : 'Play'}</span>
-              </Link> */}
 
               {wished ? (
                 <button className="button" onClick={onCheckClick}>
@@ -381,12 +376,12 @@ export default function Title({ type, id }: TitleProps) {
                   <i className="fa-solid fa-plus"></i>
                 </button>
               )}
-              {/* <div className="button2">
+              <div className="button2">
                 <a href={getDownloadUrl_2()} target="_blank" rel="noopener noreferrer">
                   <i className="fa-solid fa-download"></i>
                   <span>{type === 'series' ? `S${season} E${episode}` : 'Download'}</span>
                 </a>
-              </div> */}
+              </div>
             </div>
 
             <div className="title-grid">
