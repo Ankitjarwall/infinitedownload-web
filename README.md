@@ -1,7 +1,7 @@
 # ![Infinitedownload.store](https://iili.io/dn3meOQ.png)
 
 ## 🔗 Links
-- **[Demo](https://infintedownload.store)**
+- **[Demo](https://www.infinitedownload.store/)**
 
 ## 🖥️ Requirements
 - Static Web Hosting - Example: **[Jink](https://clients.jink.host/link.php?id=5)**
