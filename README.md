@@ -1,9 +1,7 @@
-# ![Ripper Stream](https://i.ibb.co/qrXNkyH/streaming-screenshot-1-2023-12-04.jpg)
+# ![Infinitedownload.store]([https://i.ibb.co/qrXNkyH/streaming-screenshot-1-2023-12-04.jpg](https://github.com/Ankitjarwall/infinitedownload-web/blob/main/public/infintedownload.store%20ui.png?raw=true))
 
 ## 🔗 Links
-- **[Demo](https://fossa.tv)**
-- **[Discord](https://discord.com/invite/8tQsDUyqu2)**
-- **[git.cdak.ws](https://git.cdak.ws)**
+- **[Demo](https://infintedownload.store)**
 
 ## 🖥️ Requirements
 - Static Web Hosting - Example: **[Jink](https://clients.jink.host/link.php?id=5)**
