@@ -1,4 +1,4 @@
-# ![Infinitedownload.store]([https://i.ibb.co/qrXNkyH/streaming-screenshot-1-2023-12-04.jpg](https://github.com/Ankitjarwall/infinitedownload-web/blob/main/public/infintedownload.store%20ui.png?raw=true))
+# ![Infinitedownload.store](https://iili.io/dn3meOQ.png)
 
 ## 🔗 Links
 - **[Demo](https://infintedownload.store)**
