@@ -87,15 +87,6 @@ export default function Watch() {
     }
   }, [data, maxEpisodes]);
 
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
-
-
   useEffect(() => {
     const s = search.get('s');
     const e = search.get('e');
@@ -123,7 +114,12 @@ export default function Watch() {
     );
   }, [id, search]);
 
-
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   // Add iframe onload event for ad removal
   useEffect(() => {
