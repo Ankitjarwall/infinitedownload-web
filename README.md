@@ -1,4 +1,4 @@
-# ![Infinitedownload.store](https://iili.io/dn3meOQ.png)
+# ![Infinitedownload.store](https://i.postimg.cc/x85RSW-35/infintedownload-store-ui-1.png)
 
 ## 🔗 Links
 - **[Demo](https://www.infinitedownload.store/)**
