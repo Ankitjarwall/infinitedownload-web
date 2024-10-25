@@ -90,4 +90,4 @@ Optimize your Infinite Download platform by integrating SEO strategies and monet
 
 Infinite Download brings the excitement of streaming to your screen with a professional, user-friendly, and customizable platform. Get started with our intuitive setup, and bring a Netflix-like experience to your users today!
 
-For more help, reach out through our support email or visit the [Infinite Download Website](infinitedownload.store).
+For more help, reach out through our support email or visit the [Infinite Download Website](https://infinitedownload.store).
