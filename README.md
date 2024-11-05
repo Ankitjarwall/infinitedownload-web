@@ -27,7 +27,7 @@ To run Infinite Download on a static hosting provider, here are some recommended
 
 ## 📂 Download
 
-1. **Download Source Code**: [Get the code here](https://github.com/username/infinitedownload) (If unable to download, contact us for support).
+1. **Download Source Code**: [Get the code here](https://github.com/Ankitjarwall/infnitedownload) (If unable to download, contact us for support).
 2. **Install Git** (if not already installed): [Download Git](https://git-scm.com/downloads)
 
 ## 🔧 Setup Instructions
